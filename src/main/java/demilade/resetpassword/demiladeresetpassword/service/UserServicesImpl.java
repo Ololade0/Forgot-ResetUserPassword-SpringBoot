@@ -40,12 +40,12 @@ public class UserServicesImpl implements UserServices, UserDetailsService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public User registerUser(User userRegisterRequest) throws UnirestException {
+    public User registerUser(User userRegisterRequest) {
         User user = new User();
         user.setName(userRegisterRequest.getName());
         user.setEmail(userRegisterRequest.getEmail());
         user.setPassword(passwordEncoder.encode(userRegisterRequest.getPassword()));
-        sendMail(user);
+//        sendMail(user);
         return userRepository.save(user);
 
     }
@@ -88,7 +88,6 @@ public class UserServicesImpl implements UserServices, UserDetailsService {
           sendTokenMail(foundUser, token);
           foundUser.setPasswordResetToken(token);
           userRepository.save(foundUser);
-
           return  token;
       }
       throw new UserCannotBeFoundException("User with email "+ email + "cannot be found");

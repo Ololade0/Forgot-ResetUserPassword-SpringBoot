@@ -1,5 +1,6 @@
 package demilade.resetpassword.demiladeresetpassword.service;
 
+import com.mashape.unirest.http.exceptions.UnirestException;
 import demilade.resetpassword.demiladeresetpassword.dto.request.UserLoginRequestModel;
 import demilade.resetpassword.demiladeresetpassword.dto.response.UserLoginResponse;
 import demilade.resetpassword.demiladeresetpassword.model.User;
@@ -19,9 +20,9 @@ class UserServicesImplTest {
 
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws UnirestException {
         User userRegisterRequest = new User();
-        userRegisterRequest.setEmail("adesuyiololade@gmail.com");
+        userRegisterRequest.setEmail("adesuyiololad@gmail.com");
         userRegisterRequest.setName("Adesuyi Ololade");
         userRegisterRequest.setPassword("1234");
          savedUser = userService.registerUser(userRegisterRequest);
@@ -32,14 +33,14 @@ class UserServicesImplTest {
     }
 
     @Test
-    void testThatUserCanBeRegistered(){
+    void testThatUserCanBeRegistered() throws UnirestException {
 
         User userRegisterRequest = new User();
-        userRegisterRequest.setEmail("adesuyiololade@gmail.com");
+        userRegisterRequest.setEmail("adesuyiololad@gmail.com");
         userRegisterRequest.setName("Adesuyi Ololade");
         userRegisterRequest.setPassword("1234");
        User savedUser = userService.registerUser(userRegisterRequest);
-        assertThat(savedUser.getEmail()).isEqualTo("adesuyiololade@gmail.com");
+        assertThat(savedUser.getEmail()).isEqualTo("adesuyiololad@gmail.com");
         assertThat(savedUser.getUserId()).isNotNull();
     }
 
